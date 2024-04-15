@@ -9,7 +9,12 @@ public class Tokenizer
         new TokenDefinition(TokenType.Operation, "[*]"),
         new TokenDefinition(TokenType.Operation, "[-]"),
         new TokenDefinition(TokenType.Operation, "[/]"),
-        new TokenDefinition(TokenType.Operation, "[\\^]")
+        new TokenDefinition(TokenType.Operation, @"[\^]"),
+        new TokenDefinition(TokenType.Predefined, @"(?:pi)|(?:pI)|(?:Pi)|(?:PI)"),
+        new TokenDefinition(TokenType.Predefined, @"(?:e)|(?:E)"),
+        new TokenDefinition(TokenType.Bracket, @"(?:\()|(?:\))"),
+        new TokenDefinition(TokenType.Function, "(?:sin)|(?:cos)|(?:tan)|(?:cot)"),
+        new TokenDefinition(TokenType.Function, "(?:abs)|(?:ln)|(?:log2)|(?:lg)|(?:exp)|(?:sqrt)|(?:sign)")
     ];
 
     public IEnumerable<Token> Tokenize(string input)
@@ -23,12 +28,6 @@ public class Tokenizer
             .OrderBy(x => x.Key)
             .Select(x => x.Value)
             .ToList();
-
-        if (orderedTokens[0].Value == "-")
-        {
-            orderedTokens[1] = orderedTokens[1].Negate();
-            orderedTokens.RemoveAt(0);
-        }
 
         return orderedTokens;
     }

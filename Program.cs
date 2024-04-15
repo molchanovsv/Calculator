@@ -16,7 +16,6 @@ internal static class Program
 
         IEnumerable<Token> tokenizedExpression = tokenizer.Tokenize(expression);
         
-        double result = parser.ParseExpression(tokenizedExpression);
-        Console.WriteLine(result);
+        Console.WriteLine(parser.GetExpressionValue(tokenizedExpression.ToArray()));
     }
 }

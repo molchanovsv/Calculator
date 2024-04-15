@@ -3,5 +3,10 @@ namespace Calculator.Code.Lexer;
 public enum TokenType
 {
     Number,
-    Operation
+    Predefined,
+    Empty,
+    
+    Operation,
+    Function,
+    Bracket
 }
